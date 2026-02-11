@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine?</title>
+<style>
+/* PAGE FADE-IN */
+body {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #ffe6f2, #ffd1dc);
+  padding: 60px 20px;
+  overflow: hidden;
+  position: relative;
+  opacity: 0;
+  animation: fadeIn 1.5s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* TEXT */
+h1 {
+  font-size: 34px;
+  color: #cc0033;
+}
+
+p {
+  font-size: 20px;
+  color: #990033;
+  margin-bottom: 30px;
+}
+
+/* IMAGES */
+img {
+  width: 240px;
+  border-radius: 20px; /* rounded corners */
+  margin-bottom: 25px;
+  border: 4px solid white;
+  box-shadow: 0 4px 20px rgba(255,255,255,0.7); /* soft white shadow */
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* INITIAL PHOTO ZOOM */
+#initialPhoto {
+  animation: zoomIn 3s ease forwards;
+}
+
+@keyframes zoomIn {
+  0% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+/* FINAL PHOTO POP */
+#finalPhoto {
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+/* BUTTONS */
+button {
+  font-size: 20px;
+  padding: 12px 28px;
+  margin: 10px;
+  border-radius: 12px; /* rounded corners */
+  border: none;
+  cursor: pointer;
+  transition: 0.3s all;
+  box-shadow: 0 4px 15px rgba(255,255,255,0.6); /* soft white shadow */
+}
+
+#yesBtn {
+  background-color: #ff4d6d;
+  color: white;
+  transform: scale(1);
+}
+
+#yesBtn:hover {
+  transform: scale(1.1);
+}
+
+#noBtn {
+  background-color: white;
+  color: #cc0033;
+}
+
+/* MESSAGES */
+#response {
+  margin-top: 30px;
+  font-size: 24px;
+  color: #cc0033;
+  display: none;
+}
+
+#cheekyMessage {
+  font-size: 22px;
+  color: #cc0033;
+  opacity: 0;
+  transition: opacity 0.5s;
+  margin-top: 20px;
+}
+
+/* FLOATING HEARTS */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 24px;
+  animation: floatUp 4s linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-800px); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- INITIAL PHOTO -->
+<img id="initialPhoto" src="https://i.postimg.cc/s2d19rmb/IMG-7359.jpg" alt="Us">
+
+<h1 id="initialMessage">Hi cutie bae🥰</h1>
+<p id="initialPrompt">Will you be my valentine?</p>
+
+<div id="buttons">
+  <button id="yesBtn">Yes, I love you🥹</button>
+  <button id="noBtn">No, I suck😓</button>
+</div>
+
+<div id="cheekyMessage">Hmm, try again…😣</div>
+
+<!-- FINAL PHOTO & MESSAGE -->
+<img id="finalPhoto" src="https://i.postimg.cc/D0Hxy633/IMG-6902.jpg" alt="Yay!" style="display:none;">
+<div id="response">Yayyy, I finally have a valentine😌😚</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const buttons = document.getElementById("buttons");
+const cheekyMessage = document.getElementById("cheekyMessage");
+const initialPhoto = document.getElementById("initialPhoto");
+const initialMessage = document.getElementById("initialMessage");
+const initialPrompt = document.getElementById("initialPrompt");
+const finalPhoto = document.getElementById("finalPhoto");
+const response = document.getElementById("response");
+
+let yesScale = 1;
+
+// CHEEKY NO BUTTON
+noBtn.addEventListener("click", function() {
+  buttons.style.display = "none";
+  cheekyMessage.style.opacity = "1";
+
+  setTimeout(() => {
+    cheekyMessage.style.opacity = "0";
+  }, 1200);
+
+  setTimeout(() => {
+    buttons.style.display = "block";
+    yesScale += 0.2;
+    yesBtn.style.transform = "scale(" + yesScale + ")";
+  }, 1800);
+});
+
+// YES BUTTON
+yesBtn.addEventListener("click", function() {
+  // HIDE INITIAL ELEMENTS
+  initialPhoto.style.display = "none";
+  initialMessage.style.display = "none";
+  initialPrompt.style.display = "none";
+  buttons.style.display = "none";
+
+  // SHOW FINAL ELEMENTS WITH POP
+  finalPhoto.style.display = "block";
+  setTimeout(() => {
+    finalPhoto.style.transform = "scale(1)";
+    finalPhoto.style.opacity = "1";
+  }, 50);
+
+  response.style.display = "block";
+
+  startHearts();
+});
+
+// FLOATING HEARTS
+function startHearts() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 4000);
+  }, 300);
+}
+</script>
+</body>
+</html>
