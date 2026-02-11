@@ -4,12 +4,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Be My Valentine?</title>
 <style>
-/* PAGE FADE-IN */
+/* PAGE FADE-IN AND BOTTOM PADDING FOR SAFARI */
 body {
   text-align: center;
   font-family: Arial, sans-serif;
   background: linear-gradient(to bottom, #ffe6f2, #ffd1dc);
-  padding: 60px 20px;
+  padding: 60px 20px 120px 20px; /* extra bottom padding */
   overflow: hidden;
   position: relative;
   opacity: 0;
@@ -85,12 +85,18 @@ button {
   color: #cc0033;
 }
 
+/* BUTTONS MARGIN FROM BOTTOM FOR MOBILE SAFETY */
+#buttons {
+  margin-bottom: 15vh; /* 15% of viewport height */
+}
+
 /* MESSAGES */
 #response {
   margin-top: 30px;
   font-size: 24px;
   color: #cc0033;
   display: none;
+  margin-bottom: 15vh; /* extra space so it's not hidden by Safari tab */
 }
 
 #cheekyMessage {
@@ -124,11 +130,11 @@ button {
 <p id="initialPrompt">Will you be my valentine?</p>
 
 <div id="buttons">
-  <button id="yesBtn">Yes, I love you🥹</button>
-  <button id="noBtn">No, I suck😓</button>
+  <button id="yesBtn">Yes🥹</button>
+  <button id="noBtn">No😓</button>
 </div>
 
-<div id="cheekyMessage">Hmm, try again…😣</div>
+<div id="cheekyMessage">Hmm, try again…😏</div>
 
 <!-- FINAL PHOTO & MESSAGE -->
 <img id="finalPhoto" src="https://i.postimg.cc/D0Hxy633/IMG-6902.jpg" alt="Yay!" style="display:none;">
