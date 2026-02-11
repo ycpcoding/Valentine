@@ -6,12 +6,15 @@
 <style>
 /* PAGE FADE-IN */
 body {
-  text-align: center;
+  margin: 0;
   font-family: Arial, sans-serif;
   background: linear-gradient(to bottom, #ffe6f2, #ffd1dc);
-  padding: 60px 20px 0 20px;
-  overflow: hidden;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow-x: hidden;
   opacity: 0;
   animation: fadeIn 1.5s forwards;
 }
@@ -20,15 +23,18 @@ body {
   to { opacity: 1; }
 }
 
-/* WRAPPER TO AVOID SAFARI TAB COVERING CONTENT */
+/* WRAPPER */
 #container {
-  padding-bottom: 180px; /* safe space for buttons/final message */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* TEXT */
 h1 {
   font-size: 34px;
   color: #cc0033;
+  margin: 10px 0;
 }
 
 p {
@@ -71,6 +77,13 @@ img {
 }
 
 /* BUTTONS */
+#buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 15px; /* keeps buttons safely above bottom */
+}
+
 button {
   font-size: 18px;
   padding: 10px 22px;
@@ -95,12 +108,6 @@ button {
 #noBtn {
   background-color: white;
   color: #cc0033;
-}
-
-/* BUTTONS MARGIN */
-#buttons {
-  position: relative;
-  bottom: 0;
 }
 
 /* MESSAGES */
@@ -177,7 +184,7 @@ noBtn.addEventListener("click", function() {
   }, 1200);
 
   setTimeout(() => {
-    buttons.style.display = "block";
+    buttons.style.display = "flex";
     yesScale += 0.2;
     yesBtn.style.transform = "scale(" + yesScale + ")";
   }, 1800);
@@ -204,7 +211,7 @@ yesBtn.addEventListener("click", function() {
 });
 
 // FLOATING HEARTS WITH PASTEL PINK/RED COLORS
-const heartColors = ["#ffc0cb", "#ffb3b3", "#ff8da1"]; // soft pastel pink/red
+const heartColors = ["#ffc0cb", "#ffb3b3", "#ff8da1"]; // pastel pink/red
 
 function startHearts() {
   setInterval(() => {
